@@ -1,5 +1,5 @@
 import argparse
-
+import os
 
 def argparser():
     """Store user input and return as Namespace object"""
@@ -12,9 +12,20 @@ def argparser():
     args = parser.parse_args()
     return args
 
+def check_directory_path(path):
+    """Checking if directory exists
+    :param path: string
+    """
+    if not os.path.isdir(path):
+        print(path + " is not a directory.\nPlease provide a proper directory path.")
+        exit()
+
 
 def main():
     p = argparser()
+
+    check_directory_path(p.source)
+    check_directory_path(p.replica)
 
 
 if __name__ == "__main__":

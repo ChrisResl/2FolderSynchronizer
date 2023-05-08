@@ -1,0 +1,6 @@
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-08 23:05:12.017732
+Directory testing2 was deleted
+File testing_file2.txt was deleted
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-08 23:36:07.621973
+File orNot.txt was created
+File testing.txt was created

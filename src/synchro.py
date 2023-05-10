@@ -85,10 +85,12 @@ def synchronization(source, replica, interval, log):
     while True:
         write_to_log(log, "Synchronization between folder " + source + " and folder " + replica +
                      " performed at " + str(datetime.datetime.now()) + "\n")
-
+        print("Synchronization between folder " + source + " and folder " + replica + " performed at "
+              + str(datetime.datetime.now()) + "\n")
         # deleting files in replica
         deletion(source, replica, log)
         # creating and copying (to) files/directories in replica
         backup(source, replica, log)
 
+        print()
         time.sleep(interval)

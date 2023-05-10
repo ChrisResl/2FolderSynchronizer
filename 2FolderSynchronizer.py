@@ -10,7 +10,7 @@ def argparser():
     parser = argparse.ArgumentParser(prog="2FolderSynchronizer", description="Synchronizing content of input folders")
     parser.add_argument("-s", "--source", required=True, help="Path of Source folder")
     parser.add_argument("-r", "--replica", required=True, help="Path of Replica folder")
-    parser.add_argument("-i", "--interval", nargs="?", default=10, help="Synchronization interval in seconds")
+    parser.add_argument("-i", "--interval", nargs="?", default=10, type=int, help="Synchronization interval in seconds")
     parser.add_argument("-l", "--log", required=True, help="Output file path of log file")
 
     args = parser.parse_args()
@@ -23,6 +23,18 @@ def check_directory_path(path):
     """
     if not os.path.isdir(path):
         print(path + " is not a directory.\nPlease provide a proper directory path.")
+        exit()
+
+
+def check_log_path(log):
+    """Checking if log path is correct
+    :param log: string of path to log output file
+    """
+    try:
+        with open(log, "w") as f:
+            f.close()
+    except FileNotFoundError:
+        print(log + " is an incorrect path.\nPlease provide a proper one.")
         exit()
 
 
@@ -101,10 +113,9 @@ def synchronization(source, replica, interval, log):
     """Performing backup of source directory to replica directory
     :param source: string of path to source directory
     :param replica: string of path to replica directory
-    :param interval: string of interval seconds for repeating syncro
+    :param interval: integer of interval seconds for repeating syncro
     :param log: string of path to log file
     """
-
     while True:
         write_to_log(log, "Synchronization between folder " + source + " and folder " + replica +
                      " performed at " + str(datetime.datetime.now()) + "\n")
@@ -114,7 +125,7 @@ def synchronization(source, replica, interval, log):
         # creating and copying (to) files/directories in replica
         backup(source, replica, log)
 
-        time.sleep(int(interval))
+        time.sleep(interval)
 
 
 def main():
@@ -122,7 +133,7 @@ def main():
 
     check_directory_path(p.source)
     check_directory_path(p.replica)
-
+    check_log_path(p.log)
     synchronization(p.source, p.replica, p.interval, p.log)
 
 

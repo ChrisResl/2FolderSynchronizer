@@ -4,7 +4,12 @@
 
 This synchronization tool maintains an identical copy of a source folder in a replica folder. The synchronization is one-way and periodic, and file creation, copying, and removal operations are logged to both a file and console output. The folder paths, synchronization interval, and log file path can be provided using command line arguments. 
 
-## Command line arguments
+## How to run
+
+```python 2FolderSynchronizer.py -s <directory_path> -r <directory_path> -l <output_path> -i <integer>
+```
+
+### Command line arguments
 ```
 Input:
   -s or --source            Path of source folder

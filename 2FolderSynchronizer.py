@@ -2,6 +2,7 @@ import argparse
 import os
 import shutil
 import datetime
+import time
 
 
 def argparser():
@@ -9,8 +10,8 @@ def argparser():
     parser = argparse.ArgumentParser(prog="2FolderSynchronizer", description="Synchronizing content of input folders")
     parser.add_argument("-s", "--source", required=True, help="Path of Source folder")
     parser.add_argument("-r", "--replica", required=True, help="Path of Replica folder")
-    parser.add_argument("-i", "--interval", nargs="?", default=1, help="Synchronization interval")
-    parser.add_argument("-l", "--log", required=True, help="Output file path to log file")
+    parser.add_argument("-i", "--interval", nargs="?", default=10, help="Synchronization interval in seconds")
+    parser.add_argument("-l", "--log", required=True, help="Output file path of log file")
 
     args = parser.parse_args()
     return args
@@ -26,13 +27,21 @@ def check_directory_path(path):
 
 
 def write_to_log(log, message):
+    """Writing a message to log output file
+    :param log: string of path to log file
+    :param message: string
+    """
     with open(log, "a+") as f:
         f.write(message)
         f.close()
 
 
 def deletion(source, replica, log):
-
+    """Deleting directories and files in replica directory
+    :param source: string of path to source directory
+    :param replica: string of path to replica directory
+    :param log: string of path to log file
+    """
     source_structure = dict.fromkeys(os.listdir(source))
     replica_structure = dict.fromkeys(os.listdir(replica))
 
@@ -50,6 +59,11 @@ def deletion(source, replica, log):
 
 
 def backup(source, replica, log):
+    """Copying and creating files and directories in replica directory
+    :param source: string of path to source directory
+    :param replica: string of path to replica directory
+    :param log: string of path to log file
+    """
     source_structure = dict.fromkeys(os.listdir(source))
     replica_structure = dict.fromkeys(os.listdir(replica))
 
@@ -84,12 +98,23 @@ def backup(source, replica, log):
 
 
 def synchronization(source, replica, interval, log):
-    write_to_log(log, "Synchronization between folder " +source + " and folder "+ replica + " performed at " + str(datetime.datetime.now()) + "\n")
+    """Performing backup of source directory to replica directory
+    :param source: string of path to source directory
+    :param replica: string of path to replica directory
+    :param interval: string of interval seconds for repeating syncro
+    :param log: string of path to log file
+    """
 
-    # deleting files in replica
-    deletion(source, replica, log)
-    # creating and copying (to) files/directories in replica
-    backup(source, replica, log)
+    while True:
+        write_to_log(log, "Synchronization between folder " + source + " and folder " + replica +
+                     " performed at " + str(datetime.datetime.now()) + "\n")
+
+        # deleting files in replica
+        deletion(source, replica, log)
+        # creating and copying (to) files/directories in replica
+        backup(source, replica, log)
+
+        time.sleep(int(interval))
 
 
 def main():

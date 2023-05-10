@@ -59,7 +59,7 @@ def backup(source, replica, log):
                     print("File " + rel_path + " was created")
                     write_to_log(log, "File " + rel_path + " was created\n")
                 else:
-                    os.makedirs(abs_path_source)
+                    os.makedirs(abs_path_replica)
                     print("Directory " + rel_path + " was created")
                     write_to_log(log, "Directory " + rel_path + " was created\n")
                     backup(abs_path_source, abs_path_replica, log)

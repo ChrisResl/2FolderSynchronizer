@@ -1,0 +1,24 @@
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-10 12:43:28.701785
+Directory emptyDict was copied
+File orNot.txt was copied
+File testing.txt was copied
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-10 12:43:38.709981
+Directory emptyDict was copied
+File orNot.txt was copied
+File testing.txt was copied
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-10 12:43:48.719556
+Directory emptyDict was copied
+File orNot.txt was copied
+File testing.txt was copied
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-10 12:43:58.729977
+Directory emptyDict was copied
+File orNot.txt was copied
+File testing.txt was copied
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-10 12:44:08.742131
+Directory emptyDict was copied
+File orNot.txt was copied
+File testing.txt was copied
+Synchronization between folder ./testing/source and folder ./testing/replica performed at 2023-05-10 12:44:18.754461
+Directory emptyDict was copied
+File orNot.txt was copied
+File testing.txt was copied

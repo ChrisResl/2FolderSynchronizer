@@ -6,7 +6,8 @@ This synchronization tool maintains an identical copy of a source folder in a re
 
 ## How to run
 
-```python 2FolderSynchronizer.py -s <directory_path> -r <directory_path> -l <output_path> -i <integer>
+```
+python 2FolderSynchronizer.py -s <directory_path> -r <directory_path> -l <output_path> -i <integer>
 ```
 
 ### Command line arguments
